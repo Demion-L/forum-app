@@ -8,7 +8,26 @@ const Auth: React.FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log("Submitting:", { username, password, isLogin });
+    try {
+      const response = await fetch("http://localhost:3000/auth", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password, isLogin }),
+      });
+
+      const data = await response.json();
+      console.log(`Response: ${data}`);
+
+      if (response.ok) {
+        console.log(data.message);
+      } else {
+        console.error(`Error: ${data.message}`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (

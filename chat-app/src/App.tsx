@@ -1,10 +1,16 @@
 import React from "react";
+import Auth from "./components/Auth";
+import ThemeToggle from "./components/ThemeToggle";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 const App: React.FC = () => {
   return (
-    <div className='App'>
-      <div>Hello world</div>
-    </div>
+    <ThemeProvider>
+      <div className='App'>
+        <ThemeToggle />
+        <Auth />
+      </div>
+    </ThemeProvider>
   );
 };
 
